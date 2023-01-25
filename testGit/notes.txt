@@ -1,0 +1,101 @@
+Git and Github
+
+Version Control System
+> What is version control
+> Need for version control
+	1. many developers  simultaneously working on a single integrated system
+	2. changes done for bug fixing | overwriting | unauthorized changes made on the code(when code should/should not be modify)
+	3. local copies for each developer(older code getting integrated) | maintaining different code bases -> human dependency(not good)
+	4. need for reverting to an older version of the software (rollback to the stable version)
+
+Example :-
+Problem :
+	[developer 1 .... ]
+		{whose code should be finalized? }
+		{delpoying the partial code version 1.1.0 instead of 1.5.0}
+		{overwriting their own code}
+		{no audit tracking}
+		{time intensive rollback}
+		{not scalable for large scale org}
+		{server crashes}
+	[developer 2 .... ]
+
+Solution :
+	[developer 1]
+		      -> 	[Repository] 	 	-> [server/production]
+	[developer 2]	{simulated on live system}
+			{labelling the version} 
+			{other developers work on file from repo and push their version of code}
+	
+Types of version control software :
+	1. Central Repository
+		>  check-in : developer to repos | check-out : repos to developer
+		> commit : to the repos from dvpr (write) | update : the dvpr machine/code with the latest code (read)
+		Eg : 
+		Limitation :
+			> single point failure
+			> requires constant connection
+			> 
+	2. Distributed Repository
+		> here in addition to remote repos, each developer also has a local repo ie loss of connection is averted
+		> local copies of code maintained on the developers machine and/or remote server
+		> 2 stage process
+		   commit : to the local repo | push : to the central repo (write to the repo)
+		   update : from the local repo | pull : from the central repo (read from the repo)
+		Eg : 
+
+Interview Question :
+> how to ensure you do not overwrite someone's code
+> how to avoid ...
+> how to differentiate bn local and remote repo
+> what is version control
+
+-----------------------------------------
+Git 				vs 	GitHub
+version control system 			--
+installed locally on the system 		--
+@2005, Linus				--
+open source 				--
+
+Git
+	WORKSPACE -> INDEX -> LOCAL_REPOSITORY -> REMOTE_REPOSITORY
+what is workspace? local copy of the code on the machine | independent of the ide/
+what is index? aka staging area where the code is added to maintain a copy of what we work on| closely mimcs the local repo
+local repository? stable version of code committed here | local area for all code
+remote repository? central repo where the code is dhared; can be public/private 
+
+git constantly tracks the version of the document i.e. machine copy different from the index copy
+
+git commands
+	git add file1 : adds file1 from the workspace to the index/staging area
+	git commit file1 -comment1 : adds file1 from the staging area to the local area
+	git push : adds file1 from the local repo to the remote repo (onto GitHub) | staging area still has the file
+
+
+// steps
+*do not use spaces in the dir, file names*
+*add "file.py" around the file name while saving to directory to avoid saving it as a txt file*
+1. create an empty directory in any drive
+2. initiate the git coverage > tell git to track this directory > open cmd from directory
+3. git [Enter] ... list of commands
+4. add files to the local repo
+5. open github and create a repo 
+
+		           git init -> instructs git to track current directory | creates a file with .git where it is maintaining the versions -- hidden folder
+     cmd		           dir /ah ->	to see hidden attributes i.e hidden files in the current directory
+  git bash ls -la   			->    -"-
+            	git status  		-> files not tracked is in red i.e is in the workspace
+          	git add ... 		-> adds file to the index
+  	git commit ... -m "comment" 	-> adds file to the remote repos with the comment as desc
+	git add .			-> add all the files onto the local repo
+	git diff			-> difference in the same file [deleted : red | added : green]
+					-git command
+					+git commands
+					@@ -78,9 +78,18 @@
+	
+---------------------------------------------------------
+Branch and Merge
+add new features of an existing code on the features, dvpr1 and dvpr2 create an addtional branch b1, b2 stemming from the main branch of the code
+this avoids overwriting each others code and maintain separate documents
+after merging the master branch and the b1 branch are the same level -> synchronize the code periodically with other developers
+final production ready code -> merging all the branches stemming out to create a single file
